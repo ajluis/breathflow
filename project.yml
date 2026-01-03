@@ -1,0 +1,29 @@
+name: BreathFlow
+options:
+  bundleIdPrefix: com.breathflow
+  deploymentTarget:
+    iOS: "16.2"
+
+targets:
+  BreathFlow:
+    type: application
+    platform: iOS
+    sources:
+      - BreathFlow
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.breathflow.app
+        CODE_SIGN_ENTITLEMENTS: BreathFlow/BreathFlow.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
+        INFOPLIST_KEY_UIBackgroundModes: audio
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_KEY_CFBundleDisplayName: BreathFlow
+        CODE_SIGN_STYLE: Automatic
+      configs:
+        Release:
+          CODE_SIGN_IDENTITY: "Apple Distribution"
