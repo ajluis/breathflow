@@ -332,6 +332,13 @@ struct BreathingSessionView: View {
         sessionState = .completed
         StatsManager.shared.completeSession(durationSeconds: duration.totalSeconds)
 
+        // Save to session history
+        SessionHistoryManager.shared.addSession(
+            exercise: exercise,
+            durationSeconds: duration.totalSeconds,
+            breathCount: totalBreaths
+        )
+
         // Save to HealthKit
         if let startTime = sessionStartTime {
             HealthKitManager.shared.saveMindfulSession(

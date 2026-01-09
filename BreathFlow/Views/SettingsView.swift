@@ -6,6 +6,9 @@ struct SettingsView: View {
     @State private var hapticEnabled: Bool = HapticManager.shared.isEnabled
     @State private var hapticIntensity: HapticManager.HapticIntensity = HapticManager.shared.intensity
 
+    @ObservedObject private var notificationManager = NotificationManager.shared
+    @State private var reminderTime: Date = NotificationManager.shared.settings.reminderTime
+
     var body: some View {
         List {
             // Sound Settings
@@ -50,6 +53,48 @@ struct SettingsView: View {
                         HapticManager.shared.intensity = newValue
                         HapticManager.shared.playInhale()
                     }
+                }
+            }
+
+            // Reminders
+            Section {
+                Toggle("Daily Reminder", isOn: Binding(
+                    get: { notificationManager.settings.isEnabled },
+                    set: { newValue in
+                        notificationManager.settings.isEnabled = newValue
+                        if newValue {
+                            notificationManager.requestAuthorization { granted in
+                                if granted {
+                                    notificationManager.scheduleReminder()
+                                } else {
+                                    notificationManager.settings.isEnabled = false
+                                }
+                            }
+                        } else {
+                            notificationManager.cancelReminder()
+                        }
+                    }
+                ))
+
+                if notificationManager.settings.isEnabled {
+                    DatePicker("Time", selection: $reminderTime, displayedComponents: .hourAndMinute)
+                        .onChange(of: reminderTime) { newValue in
+                            notificationManager.settings.reminderTime = newValue
+                            notificationManager.scheduleReminder()
+                        }
+
+                    Toggle("Smart Reminder", isOn: Binding(
+                        get: { notificationManager.settings.isSmartReminder },
+                        set: { newValue in
+                            notificationManager.settings.isSmartReminder = newValue
+                        }
+                    ))
+                }
+            } header: {
+                Text("Reminders")
+            } footer: {
+                if notificationManager.settings.isEnabled && notificationManager.settings.isSmartReminder {
+                    Text("Smart reminder will only notify you if you haven't practiced today.")
                 }
             }
 

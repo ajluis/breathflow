@@ -67,12 +67,21 @@ struct HomeView: View {
                 ExercisePickerView()
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink(destination: SessionHistoryView()) {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .foregroundColor(Color.theme.textSecondary)
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gearshape")
                             .foregroundColor(Color.theme.textSecondary)
                     }
                 }
+            }
+            .onAppear {
+                NotificationManager.shared.clearBadge()
             }
         }
     }
