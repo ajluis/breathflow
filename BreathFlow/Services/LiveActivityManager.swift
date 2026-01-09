@@ -25,6 +25,7 @@ class LiveActivityManager: ObservableObject {
             breathsRemaining: totalBreaths,
             totalBreaths: totalBreaths,
             phaseSecondsRemaining: 5,
+            phaseDuration: 5,
             progress: 0.0
         )
 
@@ -40,7 +41,7 @@ class LiveActivityManager: ObservableObject {
         }
     }
 
-    func updateActivity(phase: String, breathsRemaining: Int, totalBreaths: Int, phaseSecondsRemaining: Int) {
+    func updateActivity(phase: String, breathsRemaining: Int, totalBreaths: Int, phaseSecondsRemaining: Int, phaseDuration: Int) {
         let progress = Double(totalBreaths - breathsRemaining) / Double(totalBreaths)
 
         let updatedState = BreathingActivityAttributes.ContentState(
@@ -48,6 +49,7 @@ class LiveActivityManager: ObservableObject {
             breathsRemaining: breathsRemaining,
             totalBreaths: totalBreaths,
             phaseSecondsRemaining: phaseSecondsRemaining,
+            phaseDuration: phaseDuration,
             progress: progress
         )
 
@@ -65,6 +67,7 @@ class LiveActivityManager: ObservableObject {
                 breathsRemaining: 0,
                 totalBreaths: 1,
                 phaseSecondsRemaining: 0,
+                phaseDuration: 1,
                 progress: 1.0
             )
 

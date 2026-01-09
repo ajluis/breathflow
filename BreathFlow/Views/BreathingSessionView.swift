@@ -245,7 +245,8 @@ struct BreathingSessionView: View {
             phase: newPhase == .inhale ? "inhale" : "exhale",
             breathsRemaining: breathsRemaining,
             totalBreaths: totalBreaths,
-            phaseSecondsRemaining: Int(phaseDuration)
+            phaseSecondsRemaining: Int(phaseDuration),
+            phaseDuration: Int(phaseDuration)
         )
 
         // Animate fill amount directly: inhale fills up, exhale empties
@@ -273,7 +274,8 @@ struct BreathingSessionView: View {
             phase: phase == .inhale ? "inhale" : "exhale",
             breathsRemaining: breathsRemaining,
             totalBreaths: totalBreaths,
-            phaseSecondsRemaining: phaseSecondsRemaining
+            phaseSecondsRemaining: phaseSecondsRemaining,
+            phaseDuration: Int(phaseDuration)
         )
 
         if elapsed >= phaseDuration {

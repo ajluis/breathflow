@@ -38,6 +38,7 @@ struct BreathFlowLiveActivity: Widget {
 
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(spacing: 8) {
+                        // Breathing progress bar (fills on inhale, empties on exhale)
                         GeometryReader { geometry in
                             ZStack(alignment: .leading) {
                                 RoundedRectangle(cornerRadius: 4)
@@ -47,12 +48,12 @@ struct BreathFlowLiveActivity: Widget {
                                 RoundedRectangle(cornerRadius: 4)
                                     .fill(
                                         LinearGradient(
-                                            colors: [.cyan, .teal],
+                                            colors: context.state.phase == "inhale" ? [.cyan, .cyan.opacity(0.8)] : [.teal, .teal.opacity(0.8)],
                                             startPoint: .leading,
                                             endPoint: .trailing
                                         )
                                     )
-                                    .frame(width: geometry.size.width * context.state.progressPercentage, height: 8)
+                                    .frame(width: geometry.size.width * context.state.phaseFillAmount, height: 8)
                             }
                         }
                         .frame(height: 8)
@@ -76,8 +77,8 @@ struct BreathFlowLiveActivity: Widget {
                     Circle()
                         .stroke(Color.gray.opacity(0.3), lineWidth: 2)
                     Circle()
-                        .trim(from: 0, to: context.state.progressPercentage)
-                        .stroke(Color.cyan, lineWidth: 2)
+                        .trim(from: 0, to: context.state.phaseFillAmount)
+                        .stroke(context.state.phase == "inhale" ? Color.cyan : Color.teal, lineWidth: 2)
                         .rotationEffect(.degrees(-90))
                 }
                 .padding(2)
@@ -117,6 +118,7 @@ struct LockScreenView: View {
                 }
             }
 
+            // Breathing progress bar (fills on inhale, empties on exhale)
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 6)
@@ -126,12 +128,12 @@ struct LockScreenView: View {
                     RoundedRectangle(cornerRadius: 6)
                         .fill(
                             LinearGradient(
-                                colors: [.cyan, .teal],
+                                colors: context.state.phase == "inhale" ? [.cyan, .cyan.opacity(0.8)] : [.teal, .teal.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
-                        .frame(width: geometry.size.width * context.state.progressPercentage, height: 12)
+                        .frame(width: geometry.size.width * context.state.phaseFillAmount, height: 12)
                 }
             }
             .frame(height: 12)
