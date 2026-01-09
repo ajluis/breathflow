@@ -1,6 +1,6 @@
 name: BreathFlow
 options:
-  bundleIdPrefix: com.breathflow
+  bundleIdPrefix: com.aluis
   deploymentTarget:
     iOS: "16.2"
 
@@ -13,7 +13,7 @@ targets:
       - Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.breathflow.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.aluis.breathflow
         CODE_SIGN_ENTITLEMENTS: BreathFlow/BreathFlow.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         GENERATE_INFOPLIST_FILE: YES
@@ -24,6 +24,6 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         INFOPLIST_KEY_CFBundleDisplayName: BreathFlow
         CODE_SIGN_STYLE: Automatic
-      configs:
-        Release:
-          CODE_SIGN_IDENTITY: "Apple Distribution"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        ITSAppUsesNonExemptEncryption: NO

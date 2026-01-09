@@ -21,21 +21,12 @@ enum BreathPhase {
 
 struct BreathingCircle: View {
     let phase: BreathPhase
-    let progress: Double
+    let fillAmount: Double  // Direct fill amount 0-1, no computation
     let secondsRemaining: Int
     var isPaused: Bool = false
 
     private let circleSize: CGFloat = 280
     private let lineWidth: CGFloat = 12
-
-    private var fillProgress: Double {
-        switch phase {
-        case .inhale:
-            return progress
-        case .exhale:
-            return 1.0 - progress
-        }
-    }
 
     var body: some View {
         ZStack {
@@ -49,7 +40,7 @@ struct BreathingCircle: View {
 
             // Progress arc
             Circle()
-                .trim(from: 0, to: fillProgress)
+                .trim(from: 0, to: fillAmount)
                 .stroke(
                     phase.color,
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
@@ -94,7 +85,7 @@ struct BreathingCircle: View {
                 }
             }
         }
-        .animation(.easeInOut(duration: 0.4), value: phase)
+        .animation(.easeInOut(duration: 1.0), value: phase)
         .animation(.easeInOut(duration: 0.3), value: isPaused)
     }
 }

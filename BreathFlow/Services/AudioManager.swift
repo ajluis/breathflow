@@ -9,6 +9,7 @@ class AudioManager {
     private var silentPlayer: AVAudioPlayer?
 
     private var isSessionActive = false
+    private(set) var isMuted: Bool = UserDefaults.standard.bool(forKey: "audioMuted")
 
     private init() {
         setupAudioSession()
@@ -133,12 +134,19 @@ class AudioManager {
         return data
     }
 
+    func toggleMute() {
+        isMuted.toggle()
+        UserDefaults.standard.set(isMuted, forKey: "audioMuted")
+    }
+
     func playInhaleTone() {
+        guard !isMuted else { return }
         inhalePlayer?.currentTime = 0
         inhalePlayer?.play()
     }
 
     func playExhaleTone() {
+        guard !isMuted else { return }
         exhalePlayer?.currentTime = 0
         exhalePlayer?.play()
     }

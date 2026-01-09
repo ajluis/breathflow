@@ -16,7 +16,7 @@ struct BreathingSessionView: View {
     @State private var sessionState: SessionState = .countdown
     @State private var countdownValue: Int = 3
     @State private var phase: BreathPhase = .inhale
-    @State private var phaseProgress: Double = 0
+    @State private var fillAmount: Double = 0
     @State private var phaseSecondsRemaining: Int = 0
     @State private var breathsRemaining: Int = 0
     @State private var totalBreaths: Int = 0
@@ -25,12 +25,13 @@ struct BreathingSessionView: View {
     @State private var timer: Timer?
     @State private var phaseDuration: Double = 0
     @State private var phaseStartTime: Date?
+    @State private var isMuted = AudioManager.shared.isMuted
 
     var body: some View {
         ZStack {
             backgroundColor
                 .ignoresSafeArea()
-                .animation(.easeInOut(duration: 0.5), value: phase)
+                .animation(.easeInOut(duration: 1.0), value: phase)
                 .animation(.easeInOut(duration: 0.3), value: sessionState)
 
             if sessionState == .countdown {
@@ -112,6 +113,16 @@ struct BreathingSessionView: View {
                 Spacer()
 
                 Button(action: {
+                    AudioManager.shared.toggleMute()
+                    isMuted = AudioManager.shared.isMuted
+                }) {
+                    Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.2.fill")
+                        .font(.title2)
+                        .foregroundColor(Color.theme.textSecondary)
+                        .frame(width: 44, height: 44)
+                }
+
+                Button(action: {
                     isPaused.toggle()
                     if isPaused {
                         pauseSession()
@@ -132,7 +143,7 @@ struct BreathingSessionView: View {
             VStack(spacing: 24) {
                 BreathingCircle(
                     phase: phase,
-                    progress: phaseProgress,
+                    fillAmount: fillAmount,
                     secondsRemaining: phaseSecondsRemaining,
                     isPaused: isPaused
                 )
@@ -201,13 +212,14 @@ struct BreathingSessionView: View {
     }
 
     private func startPhase(_ newPhase: BreathPhase) {
-        phase = newPhase
         phaseDuration = newPhase == .inhale ? exercise.inhaleSeconds : exercise.exhaleSeconds
         phaseSecondsRemaining = Int(phaseDuration)
         phaseStartTime = Date()
 
-        // Reset progress without animation
-        phaseProgress = 0
+        // Change phase with color animation
+        withAnimation(.easeInOut(duration: 1.0)) {
+            phase = newPhase
+        }
 
         // Play audio
         if newPhase == .inhale {
@@ -216,10 +228,10 @@ struct BreathingSessionView: View {
             AudioManager.shared.playExhaleTone()
         }
 
-        // Animate progress to 1.0 over the full phase duration
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+        // Animate fill amount directly: inhale fills up, exhale empties
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             withAnimation(.linear(duration: phaseDuration)) {
-                phaseProgress = 1.0
+                fillAmount = newPhase == .inhale ? 1.0 : 0.0
             }
         }
 
@@ -245,11 +257,11 @@ struct BreathingSessionView: View {
         timer?.invalidate()
         timer = nil
 
-        // Cancel animation by resetting progress immediately
+        // Cancel animation by resetting fill amount immediately
         var transaction = Transaction()
         transaction.disablesAnimations = true
         withTransaction(transaction) {
-            phaseProgress = 0
+            fillAmount = 0
         }
 
         AudioManager.shared.stopBackgroundAudio()
