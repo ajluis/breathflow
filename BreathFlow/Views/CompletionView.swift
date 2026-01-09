@@ -6,8 +6,25 @@ struct CompletionView: View {
 
     let exercise: BreathingExercise
     let duration: SessionDuration
+    let previousStreak: Int
+    let previousTotalSeconds: Int
+    var onDismissToHome: (() -> Void)?
 
     @State private var showContent = false
+    @State private var quote = AffirmationQuotes.random()
+    @State private var displayedStreak: Int
+    @State private var displayedTotalSeconds: Int
+    @State private var hasAnimated = false
+
+    init(exercise: BreathingExercise, duration: SessionDuration, previousStreak: Int, previousTotalSeconds: Int, onDismissToHome: (() -> Void)? = nil) {
+        self.exercise = exercise
+        self.duration = duration
+        self.previousStreak = previousStreak
+        self.previousTotalSeconds = previousTotalSeconds
+        self.onDismissToHome = onDismissToHome
+        self._displayedStreak = State(initialValue: previousStreak)
+        self._displayedTotalSeconds = State(initialValue: previousTotalSeconds)
+    }
 
     var body: some View {
         ZStack {
@@ -32,6 +49,15 @@ struct CompletionView: View {
                         .font(.body)
                         .foregroundColor(Color.theme.textSecondary)
                         .opacity(showContent ? 1.0 : 0.0)
+
+                    Text("\"\(quote)\"")
+                        .font(.body)
+                        .italic()
+                        .foregroundColor(Color.theme.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                        .padding(.top, 8)
+                        .opacity(showContent ? 1.0 : 0.0)
                 }
                 .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.2), value: showContent)
 
@@ -40,14 +66,14 @@ struct CompletionView: View {
                         StatCard(
                             icon: "flame.fill",
                             title: "Day Streak",
-                            value: "\(statsManager.stats.currentStreak)",
+                            value: "\(displayedStreak)",
                             iconColor: Color.theme.streakColor
                         )
 
                         StatCard(
                             icon: "clock.fill",
                             title: "Total Time",
-                            value: statsManager.stats.formattedTotalTime
+                            value: formattedTime(displayedTotalSeconds)
                         )
                     }
                 }
@@ -60,6 +86,7 @@ struct CompletionView: View {
 
                 Button(action: {
                     dismiss()
+                    onDismissToHome?()
                 }) {
                     Text("Done")
                         .font(.title3)
@@ -85,6 +112,49 @@ struct CompletionView: View {
         }
         .onAppear {
             showContent = true
+            animateStats()
+        }
+    }
+
+    private func animateStats() {
+        guard !hasAnimated else { return }
+        hasAnimated = true
+
+        // Delay before starting the count-up animation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            // Animate streak
+            let targetStreak = statsManager.stats.currentStreak
+            let targetSeconds = statsManager.stats.totalSecondsBreathed
+
+            // Animate over ~1 second with steps
+            let steps = 20
+            let streakDiff = targetStreak - displayedStreak
+            let secondsDiff = targetSeconds - displayedTotalSeconds
+
+            for i in 1...steps {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.05) {
+                    let progress = Double(i) / Double(steps)
+                    let easedProgress = easeOutCubic(progress)
+
+                    displayedStreak = previousStreak + Int(Double(streakDiff) * easedProgress)
+                    displayedTotalSeconds = previousTotalSeconds + Int(Double(secondsDiff) * easedProgress)
+                }
+            }
+        }
+    }
+
+    private func easeOutCubic(_ t: Double) -> Double {
+        return 1 - pow(1 - t, 3)
+    }
+
+    private func formattedTime(_ totalSeconds: Int) -> String {
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds % 3600) / 60
+
+        if hours > 0 {
+            return "\(hours)h \(minutes)m"
+        } else {
+            return "\(minutes)m"
         }
     }
 }

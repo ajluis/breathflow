@@ -30,6 +30,7 @@
 		B5E2B15FCEA9A1CC29B806B3 /* BreathingExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */; };
 		C90A6F8F77EE2937AC1E56AD /* BreathingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318F5221DD177B6B001F0F4C /* BreathingActivityAttributes.swift */; };
 		CF8967796BB670380469A814 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5AEFF30AE720954B0D159D /* StatCard.swift */; };
+		E1FD7CA597C0AB5EC4D569CC /* AffirmationQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */; };
 		EAF34342C3213D870FA96FA2 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D650166C561DEE0798568F /* HealthKitManager.swift */; };
 		EDCDEA14F1CC36FEC6B52DD8 /* inhale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AABDD9E46F95D9DEE17AFF /* inhale.mp3 */; };
 		F1FBB0500EFC08DC3F31EDE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B150734BC74B5521D13B7 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingExercise.swift; sourceTree = "<group>"; };
 		C1563BBCD97633019C846B09 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C5AABDD9E46F95D9DEE17AFF /* inhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inhale.mp3; sourceTree = "<group>"; };
+		F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationQuotes.swift; sourceTree = "<group>"; };
 		F60C4D6372057DE15DA6E70F /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		F60EB2A074CEE60D25EE0F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBF99C8F6F4D2FBCD8093BAE /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		A8866D4D2017A6CE2686D7EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */,
 				AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */,
 				4F010DE8364E8A3831C3D913 /* ReminderSettings.swift */,
 				2BDAAB8ED8B91F4166F2579A /* SessionRecord.swift */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1FD7CA597C0AB5EC4D569CC /* AffirmationQuotes.swift in Sources */,
 				3A51FBCEAAB79D06F06FE7E4 /* AppDelegate.swift in Sources */,
 				070C061E5EF9E0B2240AF076 /* AudioManager.swift in Sources */,
 				3EAE024ED941B543CC3A484F /* BreathFlowApp.swift in Sources */,

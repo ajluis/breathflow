@@ -79,9 +79,15 @@ struct SessionRowView: View {
                     .font(.headline)
                     .foregroundColor(Color.theme.textPrimary)
 
-                HStack(spacing: 8) {
-                    Label(session.formattedDuration, systemImage: "clock")
-                    Label("\(session.breathCount) breaths", systemImage: "lungs")
+                HStack(spacing: 12) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "clock")
+                        Text(session.formattedDuration)
+                    }
+                    HStack(spacing: 4) {
+                        Image(systemName: "lungs")
+                        Text("\(session.breathCount) breaths")
+                    }
                 }
                 .font(.caption)
                 .foregroundColor(Color.theme.textSecondary)

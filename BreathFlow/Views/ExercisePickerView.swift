@@ -86,7 +86,10 @@ struct ExercisePickerView: View {
         .fullScreenCover(isPresented: $showSession) {
             BreathingSessionView(
                 exercise: selectedExercise,
-                duration: selectedDuration
+                duration: selectedDuration,
+                onDismissToHome: {
+                    dismiss()
+                }
             )
         }
     }

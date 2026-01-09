@@ -12,6 +12,7 @@ struct BreathingSessionView: View {
 
     let exercise: BreathingExercise
     let duration: SessionDuration
+    var onDismissToHome: (() -> Void)?
 
     @State private var sessionState: SessionState = .countdown
     @State private var countdownValue: Int = 3
@@ -27,6 +28,8 @@ struct BreathingSessionView: View {
     @State private var phaseStartTime: Date?
     @State private var isMuted = AudioManager.shared.isMuted
     @State private var sessionStartTime: Date?
+    @State private var previousStreak: Int = 0
+    @State private var previousTotalSeconds: Int = 0
 
     var body: some View {
         ZStack {
@@ -37,9 +40,10 @@ struct BreathingSessionView: View {
 
             if sessionState == .countdown {
                 countdownView
-            } else {
+            } else if sessionState == .breathing {
                 breathingView
             }
+            // Show nothing when .completed - avoids flash when dismissing
         }
         .onAppear {
             calculateTotalBreaths()
@@ -54,7 +58,13 @@ struct BreathingSessionView: View {
         .fullScreenCover(isPresented: $showCompletion) {
             CompletionView(
                 exercise: exercise,
-                duration: duration
+                duration: duration,
+                previousStreak: previousStreak,
+                previousTotalSeconds: previousTotalSeconds,
+                onDismissToHome: {
+                    dismiss()
+                    onDismissToHome?()
+                }
             )
         }
     }
@@ -136,6 +146,16 @@ struct BreathingSessionView: View {
                         .foregroundColor(Color.theme.textSecondary)
                         .frame(width: 44, height: 44)
                 }
+
+                // DEBUG: Skip to end (uncomment to enable)
+                // Button(action: {
+                //     breathsRemaining = 1
+                // }) {
+                //     Image(systemName: "forward.fill")
+                //         .font(.title2)
+                //         .foregroundColor(Color.theme.textSecondary)
+                //         .frame(width: 44, height: 44)
+                // }
             }
             .padding(.horizontal)
 
@@ -330,6 +350,11 @@ struct BreathingSessionView: View {
     private func completeSession() {
         stopSession()
         sessionState = .completed
+
+        // Store previous stats for animation
+        previousStreak = StatsManager.shared.stats.currentStreak
+        previousTotalSeconds = StatsManager.shared.stats.totalSecondsBreathed
+
         StatsManager.shared.completeSession(durationSeconds: duration.totalSeconds)
 
         // Save to session history
