@@ -26,6 +26,7 @@ struct BreathingSessionView: View {
     @State private var phaseDuration: Double = 0
     @State private var phaseStartTime: Date?
     @State private var isMuted = AudioManager.shared.isMuted
+    @State private var sessionStartTime: Date?
 
     var body: some View {
         ZStack {
@@ -208,6 +209,15 @@ struct BreathingSessionView: View {
 
     private func startBreathing() {
         sessionState = .breathing
+        sessionStartTime = Date()
+
+        // Start Live Activity
+        LiveActivityManager.shared.startActivity(
+            exerciseName: exercise.displayName,
+            exercisePattern: exercise.pattern,
+            totalBreaths: totalBreaths
+        )
+
         startPhase(.inhale)
     }
 
@@ -221,12 +231,22 @@ struct BreathingSessionView: View {
             phase = newPhase
         }
 
-        // Play audio
+        // Play audio and haptic
         if newPhase == .inhale {
             AudioManager.shared.playInhaleTone()
+            HapticManager.shared.playInhale()
         } else {
             AudioManager.shared.playExhaleTone()
+            HapticManager.shared.playExhale()
         }
+
+        // Update Live Activity
+        LiveActivityManager.shared.updateActivity(
+            phase: newPhase == .inhale ? "inhale" : "exhale",
+            breathsRemaining: breathsRemaining,
+            totalBreaths: totalBreaths,
+            phaseSecondsRemaining: Int(phaseDuration)
+        )
 
         // Animate fill amount directly: inhale fills up, exhale empties
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -247,6 +267,14 @@ struct BreathingSessionView: View {
         let elapsed = Date().timeIntervalSince(startTime)
         let remaining = max(0, phaseDuration - elapsed)
         phaseSecondsRemaining = Int(ceil(remaining))
+
+        // Update Live Activity with current countdown
+        LiveActivityManager.shared.updateActivity(
+            phase: phase == .inhale ? "inhale" : "exhale",
+            breathsRemaining: breathsRemaining,
+            totalBreaths: totalBreaths,
+            phaseSecondsRemaining: phaseSecondsRemaining
+        )
 
         if elapsed >= phaseDuration {
             switchPhase()
@@ -276,6 +304,7 @@ struct BreathingSessionView: View {
         timer?.invalidate()
         timer = nil
         AudioManager.shared.stopBackgroundAudio()
+        LiveActivityManager.shared.endActivity()
     }
 
     private func switchPhase() {
@@ -300,7 +329,18 @@ struct BreathingSessionView: View {
         stopSession()
         sessionState = .completed
         StatsManager.shared.completeSession(durationSeconds: duration.totalSeconds)
+
+        // Save to HealthKit
+        if let startTime = sessionStartTime {
+            HealthKitManager.shared.saveMindfulSession(
+                startDate: startTime,
+                endDate: Date(),
+                exerciseName: exercise.displayName
+            )
+        }
+
         AudioManager.shared.playCompletionSound()
+        HapticManager.shared.playCompletion()
         showCompletion = true
     }
 }

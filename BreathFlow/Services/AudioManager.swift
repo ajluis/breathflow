@@ -34,10 +34,12 @@ class AudioManager {
     }
 
     private func loadAudioFiles() {
+        let volume = Float(UserDefaults.standard.double(forKey: "soundVolume").nonZeroOrDefault(0.7))
+
         if let inhaleURL = Bundle.main.url(forResource: "inhale", withExtension: "mp3") {
             do {
                 inhalePlayer = try AVAudioPlayer(contentsOf: inhaleURL)
-                inhalePlayer?.volume = 0.7
+                inhalePlayer?.volume = volume
                 inhalePlayer?.prepareToPlay()
             } catch {
                 print("Failed to load inhale sound: \(error)")
@@ -47,7 +49,7 @@ class AudioManager {
         if let exhaleURL = Bundle.main.url(forResource: "exhale", withExtension: "mp3") {
             do {
                 exhalePlayer = try AVAudioPlayer(contentsOf: exhaleURL)
-                exhalePlayer?.volume = 0.7
+                exhalePlayer?.volume = volume
                 exhalePlayer?.prepareToPlay()
             } catch {
                 print("Failed to load exhale sound: \(error)")
@@ -137,6 +139,12 @@ class AudioManager {
     func toggleMute() {
         isMuted.toggle()
         UserDefaults.standard.set(isMuted, forKey: "audioMuted")
+    }
+
+    func setVolume(_ volume: Double) {
+        UserDefaults.standard.set(volume, forKey: "soundVolume")
+        inhalePlayer?.volume = Float(volume)
+        exhalePlayer?.volume = Float(volume)
     }
 
     func playInhaleTone() {

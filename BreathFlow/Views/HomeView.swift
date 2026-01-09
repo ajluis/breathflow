@@ -66,6 +66,14 @@ struct HomeView: View {
             .navigationDestination(isPresented: $showExercisePicker) {
                 ExercisePickerView()
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .foregroundColor(Color.theme.textSecondary)
+                    }
+                }
+            }
         }
     }
 }

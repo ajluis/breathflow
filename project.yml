@@ -27,3 +27,5 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         ITSAppUsesNonExemptEncryption: NO
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health to help track your wellness."
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health."
