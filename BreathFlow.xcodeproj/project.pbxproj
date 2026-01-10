@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		070C061E5EF9E0B2240AF076 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651C0D02D91B6DED9837F6AA /* AudioManager.swift */; };
+		09DC53EBBC717F2FA7C35C5B /* BreathFlowWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3EDF5CBCCF3E67CD26BD67CC /* BreathFlowWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		119D1F0FA46FFA06CA3003DE /* BreathingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466F2C61DB7B44B4C72DE24 /* BreathingSessionView.swift */; };
 		1AE3927339D69C8DE87B49B9 /* ReminderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F010DE8364E8A3831C3D913 /* ReminderSettings.swift */; };
 		21356004B08342EF74057867 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9CE1B4FD5D91C4503CE51 /* UserStats.swift */; };
@@ -21,21 +22,49 @@
 		69659117596E6EB2316DB216 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF99C8F6F4D2FBCD8093BAE /* Color+Theme.swift */; };
 		69ABD405B5D029ACF79CBF3D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9083B8346FE2BD35D1E9BCAB /* HomeView.swift */; };
 		72E7D307E963F6884DDA1637 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB165EFFA16C31C06866493 /* HapticManager.swift */; };
+		732625A30BBDF44018B7E2B5 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A4D857DD25C4C324795DC /* AppSettings.swift */; };
 		7706E7B7E365AB483414E6E7 /* ExercisePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE784435331C840BE55F916 /* ExercisePickerView.swift */; };
 		7FCAFC4F49B4DFC31EB368F5 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43700D9790DD446D94558202 /* LiveActivityManager.swift */; };
 		941C55B8D19A879DF8F8C1A9 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29252616C8E2444ACC5FFD53 /* Double+Extensions.swift */; };
 		96344FC8EB58129496FC7352 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60C4D6372057DE15DA6E70F /* CompletionView.swift */; };
 		A6C90C0434CC90E0FCC5D4D6 /* BreathingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044A529E02F300A06F3ACB5 /* BreathingCircle.swift */; };
+		ADEA0DCCCC1534575AD22187 /* BreathFlowLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CFF53F75674357846AC6CA /* BreathFlowLiveActivity.swift */; };
 		AE1EF672553629129AFF3C7F /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD0EDD529411B51BD480EB /* StatsManager.swift */; };
 		B5E2B15FCEA9A1CC29B806B3 /* BreathingExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */; };
 		C90A6F8F77EE2937AC1E56AD /* BreathingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318F5221DD177B6B001F0F4C /* BreathingActivityAttributes.swift */; };
 		CF8967796BB670380469A814 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5AEFF30AE720954B0D159D /* StatCard.swift */; };
+		DC3F4CDF1B7F328615F71F28 /* BreathingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318F5221DD177B6B001F0F4C /* BreathingActivityAttributes.swift */; };
 		E1FD7CA597C0AB5EC4D569CC /* AffirmationQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */; };
 		EAF34342C3213D870FA96FA2 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D650166C561DEE0798568F /* HealthKitManager.swift */; };
 		EDCDEA14F1CC36FEC6B52DD8 /* inhale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5AABDD9E46F95D9DEE17AFF /* inhale.mp3 */; };
+		F039388C40F4AF127B00FA5C /* BreathFlowWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB50719885E389CF44F404 /* BreathFlowWidgetsBundle.swift */; };
 		F1FBB0500EFC08DC3F31EDE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B150734BC74B5521D13B7 /* Assets.xcassets */; };
 		F9542AB8E9AB778F6C7056E8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1563BBCD97633019C846B09 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EDF08E5555EDFD14D786785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B9D9ABF95C9036E99EF89B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55D6B657DDD3326E0DBF64A6;
+			remoteInfo = BreathFlowWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B16CB83F48E75C1705381B23 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				09DC53EBBC717F2FA7C35C5B /* BreathFlowWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0044A529E02F300A06F3ACB5 /* BreathingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingCircle.swift; sourceTree = "<group>"; };
@@ -46,17 +75,21 @@
 		2BDAAB8ED8B91F4166F2579A /* SessionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
 		318F5221DD177B6B001F0F4C /* BreathingActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingActivityAttributes.swift; sourceTree = "<group>"; };
 		373523CEE9384DD9A68C5250 /* BreathFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathFlowApp.swift; sourceTree = "<group>"; };
+		3EDF5CBCCF3E67CD26BD67CC /* BreathFlowWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = BreathFlowWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC9CE1B4FD5D91C4503CE51 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		41D650166C561DEE0798568F /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		43700D9790DD446D94558202 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		4F010DE8364E8A3831C3D913 /* ReminderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettings.swift; sourceTree = "<group>"; };
 		5040E4D1445914161F325C69 /* exhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exhale.mp3; sourceTree = "<group>"; };
 		5D5B150734BC74B5521D13B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		623A4D857DD25C4C324795DC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		651C0D02D91B6DED9837F6AA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		7ADD0EDD529411B51BD480EB /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		7FE784435331C840BE55F916 /* ExercisePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerView.swift; sourceTree = "<group>"; };
-		817A9CA1EF51E08218793895 /* BreathFlow.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BreathFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		817A9CA1EF51E08218793895 /* BreathFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreathFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EB50719885E389CF44F404 /* BreathFlowWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathFlowWidgetsBundle.swift; sourceTree = "<group>"; };
 		9083B8346FE2BD35D1E9BCAB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9B20537A9BBEA36CBE87D88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9BB165EFFA16C31C06866493 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		A141F12DA1606C1849B67537 /* SessionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryView.swift; sourceTree = "<group>"; };
 		A2542ED03377C1289BBC90A9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -64,6 +97,8 @@
 		AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingExercise.swift; sourceTree = "<group>"; };
 		C1563BBCD97633019C846B09 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C5AABDD9E46F95D9DEE17AFF /* inhale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inhale.mp3; sourceTree = "<group>"; };
+		D7CFF53F75674357846AC6CA /* BreathFlowLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathFlowLiveActivity.swift; sourceTree = "<group>"; };
+		DA282DA46A64E9B4504F4651 /* BreathFlowWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BreathFlowWidgets.entitlements; sourceTree = "<group>"; };
 		F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationQuotes.swift; sourceTree = "<group>"; };
 		F60C4D6372057DE15DA6E70F /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		F60EB2A074CEE60D25EE0F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				817A9CA1EF51E08218793895 /* BreathFlow.app */,
+				3EDF5CBCCF3E67CD26BD67CC /* BreathFlowWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F103662F7E3B13D384BD9E22 /* AffirmationQuotes.swift */,
+				623A4D857DD25C4C324795DC /* AppSettings.swift */,
 				AE6BB9C987307C47F9F71309 /* BreathingExercise.swift */,
 				4F010DE8364E8A3831C3D913 /* ReminderSettings.swift */,
 				2BDAAB8ED8B91F4166F2579A /* SessionRecord.swift */,
@@ -170,6 +207,17 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		DAAECABD8E8B0168218D3B95 /* BreathFlowWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				D7CFF53F75674357846AC6CA /* BreathFlowLiveActivity.swift */,
+				DA282DA46A64E9B4504F4651 /* BreathFlowWidgets.entitlements */,
+				84EB50719885E389CF44F404 /* BreathFlowWidgetsBundle.swift */,
+				9B20537A9BBEA36CBE87D88B /* Info.plist */,
+			);
+			path = BreathFlowWidgets;
+			sourceTree = "<group>";
+		};
 		DAD05E81A5C7FB3FD3ED5C92 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				743E2196F96175AEDAF19FE4 /* BreathFlow */,
+				DAAECABD8E8B0168218D3B95 /* BreathFlowWidgets */,
 				D683CE787406CBD484F4DBC8 /* Shared */,
 				7D51A9A509F4660CF0E6EC5B /* Products */,
 			);
@@ -190,16 +239,35 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		55D6B657DDD3326E0DBF64A6 /* BreathFlowWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5CCA5D18A70C132CC548E2E0 /* Build configuration list for PBXNativeTarget "BreathFlowWidgets" */;
+			buildPhases = (
+				727570DAE02F3C83252E72C5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BreathFlowWidgets;
+			packageProductDependencies = (
+			);
+			productName = BreathFlowWidgets;
+			productReference = 3EDF5CBCCF3E67CD26BD67CC /* BreathFlowWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7D93734CAB4EAAF600BF2BBC /* BreathFlow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D292CD917CA41F3873426C0D /* Build configuration list for PBXNativeTarget "BreathFlow" */;
 			buildPhases = (
 				AE93759C2BAD801DCBAC244E /* Sources */,
 				A8DBC61B0360DCA033FF3C81 /* Resources */,
+				B16CB83F48E75C1705381B23 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C626E00F4EF0DDB54929019B /* PBXTargetDependency */,
 			);
 			name = BreathFlow;
 			packageProductDependencies = (
@@ -217,6 +285,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					55D6B657DDD3326E0DBF64A6 = {
+						ProvisioningStyle = Automatic;
+					};
 					7D93734CAB4EAAF600BF2BBC = {
 						ProvisioningStyle = Automatic;
 					};
@@ -232,11 +303,11 @@
 			);
 			mainGroup = FD2482E966F4148C3432AE13;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				7D93734CAB4EAAF600BF2BBC /* BreathFlow */,
+				55D6B657DDD3326E0DBF64A6 /* BreathFlowWidgets */,
 			);
 		};
 /* End PBXProject section */
@@ -255,12 +326,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		727570DAE02F3C83252E72C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADEA0DCCCC1534575AD22187 /* BreathFlowLiveActivity.swift in Sources */,
+				F039388C40F4AF127B00FA5C /* BreathFlowWidgetsBundle.swift in Sources */,
+				DC3F4CDF1B7F328615F71F28 /* BreathingActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE93759C2BAD801DCBAC244E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E1FD7CA597C0AB5EC4D569CC /* AffirmationQuotes.swift in Sources */,
 				3A51FBCEAAB79D06F06FE7E4 /* AppDelegate.swift in Sources */,
+				732625A30BBDF44018B7E2B5 /* AppSettings.swift in Sources */,
 				070C061E5EF9E0B2240AF076 /* AudioManager.swift in Sources */,
 				3EAE024ED941B543CC3A484F /* BreathFlowApp.swift in Sources */,
 				C90A6F8F77EE2937AC1E56AD /* BreathingActivityAttributes.swift in Sources */,
@@ -289,6 +371,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C626E00F4EF0DDB54929019B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55D6B657DDD3326E0DBF64A6 /* BreathFlowWidgets */;
+			targetProxy = 8EDF08E5555EDFD14D786785 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		0D9E276AAEB10FAB158B2073 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -297,9 +387,11 @@
 				CODE_SIGN_ENTITLEMENTS = BreathFlow/BreathFlow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4U29EVDWU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BreathFlow;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health to help track your wellness.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -308,7 +400,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				ITSAppUsesNonExemptEncryption = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,6 +410,46 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		120E198C3EEE00F4CCA98397 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BreathFlowWidgets/BreathFlowWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				INFOPLIST_FILE = BreathFlowWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aluis.breathflow.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		35B22F51617F85CB9022B2F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BreathFlowWidgets/BreathFlowWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				INFOPLIST_FILE = BreathFlowWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aluis.breathflow.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		7F35029567079730EB2CE89D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -390,9 +521,11 @@
 				CODE_SIGN_ENTITLEMENTS = BreathFlow/BreathFlow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4U29EVDWU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BreathFlow;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health to help track your wellness.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BreathFlow saves your breathing sessions as Mindful Minutes in Apple Health.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -401,7 +534,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				ITSAppUsesNonExemptEncryption = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +604,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5CCA5D18A70C132CC548E2E0 /* Build configuration list for PBXNativeTarget "BreathFlowWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120E198C3EEE00F4CCA98397 /* Debug */,
+				35B22F51617F85CB9022B2F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		8F3D40F1F39EBF1F9C4879BE /* Build configuration list for PBXProject "BreathFlow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

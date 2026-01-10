@@ -100,18 +100,24 @@ struct BreathingSessionView: View {
     private var breathingView: some View {
         VStack(spacing: 40) {
             HStack {
-                Button(action: {
-                    stopSession()
-                    dismiss()
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.title2)
-                        .foregroundColor(Color.theme.textSecondary)
-                        .frame(width: 44, height: 44)
+                // Left side - fixed width for balance
+                HStack {
+                    Button(action: {
+                        stopSession()
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.title2)
+                            .foregroundColor(Color.theme.textSecondary)
+                            .frame(width: 44, height: 44)
+                    }
+                    Spacer()
                 }
+                .frame(width: 88)
 
                 Spacer()
 
+                // Center - breaths counter
                 VStack(spacing: 2) {
                     Text("\(breathsRemaining)")
                         .font(.system(size: 24, weight: .semibold, design: .rounded))
@@ -123,39 +129,44 @@ struct BreathingSessionView: View {
 
                 Spacer()
 
-                Button(action: {
-                    AudioManager.shared.toggleMute()
-                    isMuted = AudioManager.shared.isMuted
-                }) {
-                    Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.2.fill")
-                        .font(.title2)
-                        .foregroundColor(Color.theme.textSecondary)
-                        .frame(width: 44, height: 44)
-                }
-
-                Button(action: {
-                    isPaused.toggle()
-                    if isPaused {
-                        pauseSession()
-                    } else {
-                        resumeSession()
+                // Right side - fixed width for balance
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        AudioManager.shared.toggleMute()
+                        isMuted = AudioManager.shared.isMuted
+                    }) {
+                        Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.2.fill")
+                            .font(.title2)
+                            .foregroundColor(Color.theme.textSecondary)
+                            .frame(width: 44, height: 44)
                     }
-                }) {
-                    Image(systemName: isPaused ? "play.fill" : "pause.fill")
-                        .font(.title2)
-                        .foregroundColor(Color.theme.textSecondary)
-                        .frame(width: 44, height: 44)
-                }
 
-                // DEBUG: Skip to end (uncomment to enable)
-                // Button(action: {
-                //     breathsRemaining = 1
-                // }) {
-                //     Image(systemName: "forward.fill")
-                //         .font(.title2)
-                //         .foregroundColor(Color.theme.textSecondary)
-                //         .frame(width: 44, height: 44)
-                // }
+                    Button(action: {
+                        isPaused.toggle()
+                        if isPaused {
+                            pauseSession()
+                        } else {
+                            resumeSession()
+                        }
+                    }) {
+                        Image(systemName: isPaused ? "play.fill" : "pause.fill")
+                            .font(.title2)
+                            .foregroundColor(Color.theme.textSecondary)
+                            .frame(width: 44, height: 44)
+                    }
+
+                    // DEBUG: Skip to end (uncomment to enable)
+                    // Button(action: {
+                    //     breathsRemaining = 1
+                    // }) {
+                    //     Image(systemName: "forward.fill")
+                    //         .font(.title2)
+                    //         .foregroundColor(Color.theme.textSecondary)
+                    //         .frame(width: 44, height: 44)
+                    // }
+                }
+                .frame(width: 88)
             }
             .padding(.horizontal)
 

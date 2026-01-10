@@ -1,16 +1,29 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject private var appSettings: AppSettings
+
     @State private var soundEnabled: Bool = !AudioManager.shared.isMuted
     @State private var soundVolume: Double = UserDefaults.standard.double(forKey: "soundVolume").nonZeroOrDefault(0.7)
     @State private var hapticEnabled: Bool = HapticManager.shared.isEnabled
     @State private var hapticIntensity: HapticManager.HapticIntensity = HapticManager.shared.intensity
+    @State private var hapticPattern: HapticManager.HapticPattern = HapticManager.shared.pattern
 
     @ObservedObject private var notificationManager = NotificationManager.shared
     @State private var reminderTime: Date = NotificationManager.shared.settings.reminderTime
 
     var body: some View {
         List {
+            // Appearance Settings
+            Section("Appearance") {
+                Picker("Theme", selection: $appSettings.theme) {
+                    ForEach(AppTheme.allCases, id: \.self) { theme in
+                        Label(theme.displayName, systemImage: theme.icon)
+                            .tag(theme)
+                    }
+                }
+            }
+
             // Sound Settings
             Section("Sound") {
                 Toggle("Sound Effects", isOn: $soundEnabled)
@@ -37,7 +50,7 @@ struct SettingsView: View {
             }
 
             // Haptic Settings
-            Section("Haptics") {
+            Section {
                 Toggle("Haptic Feedback", isOn: $hapticEnabled)
                     .onChange(of: hapticEnabled) { _ in
                         HapticManager.shared.toggle()
@@ -51,8 +64,30 @@ struct SettingsView: View {
                     }
                     .onChange(of: hapticIntensity) { newValue in
                         HapticManager.shared.intensity = newValue
+                    }
+
+                    Picker("Pattern", selection: $hapticPattern) {
+                        ForEach(HapticManager.HapticPattern.allCases, id: \.self) { pattern in
+                            Text(pattern.displayName).tag(pattern)
+                        }
+                    }
+                    .onChange(of: hapticPattern) { newValue in
+                        HapticManager.shared.pattern = newValue
                         HapticManager.shared.playInhale()
                     }
+
+                    Button("Test Haptic") {
+                        HapticManager.shared.playInhale()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                            HapticManager.shared.playExhale()
+                        }
+                    }
+                }
+            } header: {
+                Text("Haptics")
+            } footer: {
+                if hapticEnabled {
+                    Text(hapticPattern.description)
                 }
             }
 
@@ -160,5 +195,6 @@ struct HealthSettingsView: View {
 #Preview {
     NavigationStack {
         SettingsView()
+            .environmentObject(AppSettings.shared)
     }
 }
